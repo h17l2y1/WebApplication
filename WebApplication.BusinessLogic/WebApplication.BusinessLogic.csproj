@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.2.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WebApplication.DataAccess\WebApplication.DataAccess.csproj" />
+    <ProjectReference Include="..\WebApplication.Entities\WebApplication.Entities.csproj" />
+    <ProjectReference Include="..\WebApplication.ViewModels\WebApplication.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>
