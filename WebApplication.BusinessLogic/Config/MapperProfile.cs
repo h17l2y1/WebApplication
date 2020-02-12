@@ -1,5 +1,6 @@
 ﻿using WebApplication.Entities.Entities;
 using WebApplication.ViewModels.Category.Response;
+using WebApplication.ViewModels.Product.Request;
 using WebApplication.ViewModels.Product.Response;
 
 namespace WebApplication.BusinessLogic.Config
@@ -10,6 +11,7 @@ namespace WebApplication.BusinessLogic.Config
 		{
 			CreateMap<GetProductByCategoryResponseItem, Product>().ReverseMap();
 			CreateMap<GetAllCategoryItem, Category>().ReverseMap();
+			CreateMap<AddProductRequest, Product>().ReverseMap();
 		}
 	}
 }

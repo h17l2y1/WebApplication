@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29009.5
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Api", "WebApplication.Api\WebApplication.Api.csproj", "{55F4F1EA-A894-49BE-8AF5-01DF6755738F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Api", "WebApplication.Api\WebApplication.Api.csproj", "{55F4F1EA-A894-49BE-8AF5-01DF6755738F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.DataAccess", "WebApplication.DataAccess\WebApplication.DataAccess.csproj", "{03927C58-D95B-4384-BBA2-6F90348F8D06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.DataAccess", "WebApplication.DataAccess\WebApplication.DataAccess.csproj", "{03927C58-D95B-4384-BBA2-6F90348F8D06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Entities", "WebApplication.Entities\WebApplication.Entities.csproj", "{0551C3B5-ADAA-4F04-8116-1E3879CB2AF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.Entities", "WebApplication.Entities\WebApplication.Entities.csproj", "{0551C3B5-ADAA-4F04-8116-1E3879CB2AF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.BusinessLogic", "WebApplication.BusinessLogic\WebApplication.BusinessLogic.csproj", "{8DC13E56-26C4-46E2-8A60-DF743C3412F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.BusinessLogic", "WebApplication.BusinessLogic\WebApplication.BusinessLogic.csproj", "{8DC13E56-26C4-46E2-8A60-DF743C3412F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.ViewModels", "WebApplication.ViewModels\WebApplication.ViewModels.csproj", "{E56FF39E-AAC8-47E8-9E2D-8521B923DF87}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApplication.ViewModels", "WebApplication.ViewModels\WebApplication.ViewModels.csproj", "{E56FF39E-AAC8-47E8-9E2D-8521B923DF87}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication.Web", "WebApplication.Web\WebApplication.Web.csproj", "{B375BF0E-7609-4DAC-872E-1092AA4A1A82}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{E56FF39E-AAC8-47E8-9E2D-8521B923DF87}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E56FF39E-AAC8-47E8-9E2D-8521B923DF87}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E56FF39E-AAC8-47E8-9E2D-8521B923DF87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B375BF0E-7609-4DAC-872E-1092AA4A1A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B375BF0E-7609-4DAC-872E-1092AA4A1A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B375BF0E-7609-4DAC-872E-1092AA4A1A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B375BF0E-7609-4DAC-872E-1092AA4A1A82}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

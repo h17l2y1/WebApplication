@@ -1,0 +1,32 @@
+<div *ngIf="productsView"> 
+  <table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of productsView.products">
+        <th scope="row">{{product.id}}</th>
+        <td>{{product.name}}</td>
+        <td>Otto</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<div *ngIf="dropDowmForm">
+  <form [formGroup]="dropDowmForm"> 
+    <select formControlName="categories" (change)="getProducts()">
+      <option *ngFor="let category of dropDownView.categories" [ngValue]="category">
+        {{category.name}}
+      </option>
+    </select>
+  </form>
+</div>
+
+
+<router-outlet></router-outlet>

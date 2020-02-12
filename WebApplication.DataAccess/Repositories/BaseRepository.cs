@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WebApplication.DataAccess.Config;
@@ -7,42 +7,34 @@ using WebApplication.Entities.Entities.Interfaces;
 
 namespace WebApplication.DataAccess.Repositories
 {
-	public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : IBaseEntity
+	public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IBaseEntity
 	{
-		protected ApplicationContext _context;
+		private ApplicationContext _сontext { get; set; }
+
+		protected DbSet<TEntity> _dbSet { get; set; }
 
 		public BaseRepository(ApplicationContext context)
 		{
-			_context = context;
+			_сontext = context;
+			_dbSet = _сontext.Set<TEntity>();
 		}
 
-		public async Task Add(TEntity entity)
+		public virtual async Task<string> Add(TEntity entity)
 		{
-			await _context.Set<TEntity>().AddAsync(entity);
-			await _context.SaveChangesAsync();
+			await _dbSet.AddAsync(entity);
+			await _сontext.SaveChangesAsync();
+			return entity.Id;
 		}
 
-		public async Task<TEntity> Get(string id)
+		public virtual async Task<TEntity> Get(string Id)
 		{
-			return await _context.Set<TEntity>().FindAsync(id);
+			return await _dbSet.SingleOrDefaultAsync(x => x.Id == Id);
 		}
 
-		public async Task<IEnumerable<TEntity>> GetAll()
+		public virtual async Task<IEnumerable<TEntity>> GetAll()
 		{
-			return _context.Set<TEntity>();
+			return await _dbSet.ToListAsync();
 		}
 
-		public async Task Remove(string id)
-		{
-			var entity = await Get(id);
-			_context.Set<TEntity>().Remove(entity);
-			await _context.SaveChangesAsync();
-		}
-
-		public async Task Update(TEntity entity)
-		{
-			_context.Set<TEntity>().Update(entity);
-			await _context.SaveChangesAsync();
-		}
 	}
 }

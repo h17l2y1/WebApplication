@@ -20,6 +20,14 @@ namespace WebApplication.BusinessLogic.Services
 			_productRepository = productRepository;
 		}
 
+		public async Task<AddProductResponse> AddProduct(AddProductRequest request)
+		{
+			Product product = _mapper.Map<Product>(request);
+			string id = await _productRepository.Add(product);
+			var response = new AddProductResponse(id);
+			return response;
+		}
+
 		public async Task<GetProductByCategoryResponse> GetProductByCategory(GetProductByCategoryRequest request)
 		{
 			IEnumerable<Product> products = await GetFilteredProducts(request);
