@@ -12,6 +12,7 @@ namespace WebApplication.BusinessLogic.Config
 			CreateMap<GetProductByCategoryResponseItem, Product>().ReverseMap();
 			CreateMap<GetAllCategoryItem, Category>().ReverseMap();
 			CreateMap<AddProductRequest, Product>().ReverseMap();
+			CreateMap<AddProductResponse, Product>().ReverseMap();
 		}
 	}
 }

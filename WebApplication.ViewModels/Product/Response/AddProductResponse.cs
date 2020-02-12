@@ -3,14 +3,7 @@
 	public class AddProductResponse
 	{
 		public string Id { get; set; }
-
-		public AddProductResponse()
-		{
-		}
-
-		public AddProductResponse(string id)
-		{
-			Id = id;
-		}
+		public string Name { get; set; }
+		public string CategoryId { get; set; }
 	}
 }

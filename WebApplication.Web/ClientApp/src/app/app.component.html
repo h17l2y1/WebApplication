@@ -11,7 +11,7 @@
       <tr *ngFor="let product of productsView.products">
         <th scope="row">{{product.id}}</th>
         <td>{{product.name}}</td>
-        <td>Otto</td>
+        <td>{{getCategoryById(product.categoryId)}}</td>
       </tr>
     </tbody>
   </table>
@@ -28,5 +28,14 @@
   </form>
 </div>
 
+<button type="button" class="btn btn-primary" (click)="openCloseForm()">Add</button>
+
+<form *ngIf="newItem" [formGroup]="addProductForm">
+  <div class="form-group">
+    <label>Name</label>
+    <input class="form-control" formControlName="name">
+  </div>
+  <button class="btn btn-primary" (click)="addProduct()">Submit</button>
+</form>
 
 <router-outlet></router-outlet>

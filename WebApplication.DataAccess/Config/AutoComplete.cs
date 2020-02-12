@@ -14,6 +14,6 @@ namespace WebApplication.DataAccess.Config
 			list.Add(new Category { Name = "Meizu" });
 
 			return list;
-		}
+		}	
 	}
 }

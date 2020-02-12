@@ -22,9 +22,9 @@ namespace WebApplication.BusinessLogic.Services
 
 		public async Task<AddProductResponse> AddProduct(AddProductRequest request)
 		{
-			Product product = _mapper.Map<Product>(request);
-			string id = await _productRepository.Add(product);
-			var response = new AddProductResponse(id);
+			Product entity = _mapper.Map<Product>(request);
+			await _productRepository.Add(entity);
+			var response = _mapper.Map<AddProductResponse>(entity);
 			return response;
 		}
 
