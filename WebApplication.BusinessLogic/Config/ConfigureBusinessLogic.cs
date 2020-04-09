@@ -19,9 +19,8 @@ namespace WebApplication.BusinessLogic.Config
 
 			services.InjectDataAccessDependency(сonfiguration);
 
-		
-			services.AddScoped<IDropDownService, DropDownService>();
-			services.AddScoped<IProductService, ProductService>();
+	
+			services.AddScoped<INoteService, NoteService>();
 		}
 
 	}

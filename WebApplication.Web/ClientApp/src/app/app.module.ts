@@ -3,24 +3,32 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DropDownService } from 'src/shared/service/dropdown.service';
-import { ProductService } from 'src/shared/service/product.service';
+import { NoteService } from 'src/shared/service/note.service';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule, MatFormFieldModule} from '@angular/material';
+import { PopupComponent } from './popup/popup.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PopupComponent
+  ],
+  entryComponents: [
+    PopupComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatDialogModule,
+    BrowserAnimationsModule,
+    MatFormFieldModule
   ],
   providers: [
-    DropDownService,
-    ProductService
+    NoteService
   ],
   bootstrap: [AppComponent]
 })

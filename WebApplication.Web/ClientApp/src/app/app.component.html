@@ -1,41 +1,25 @@
-<div *ngIf="productsView"> 
-  <table class="table">
-    <thead class="thead-dark">
-      <tr>
-        <th scope="col">Id</th>
-        <th scope="col">Name</th>
-        <th scope="col">Category</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let product of productsView.products">
-        <th scope="row">{{product.id}}</th>
-        <td>{{product.name}}</td>
-        <td>{{getCategoryById(product.categoryId)}}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-
-<div *ngIf="dropDowmForm">
-  <form [formGroup]="dropDowmForm"> 
-    <select formControlName="categories" (change)="getProducts()">
-      <option *ngFor="let category of dropDownView.categories" [ngValue]="category">
-        {{category.name}}
-      </option>
-    </select>
-  </form>
-</div>
-
-<button type="button" class="btn btn-primary" (click)="openCloseForm()">Add</button>
-
-<form *ngIf="newItem" [formGroup]="addProductForm">
-  <div class="form-group">
-    <label>Name</label>
-    <input class="form-control" formControlName="name">
+<div class="container">
+  <div class="top-bar">
+    <button type="button" class="btn btn-primary" (click)="openDialog(null)">Add new</button>
   </div>
-  <button class="btn btn-primary" (click)="addProduct()">Submit</button>
-</form>
+  <div *ngIf="notes" class="d-flex">
+    <div *ngFor="let note of notes" class="card m-3" style="width: 18rem;">
+      <div class="card-container">
+        <div class="d-flex mb-3">
+          <button type="button" class="btn btn-light" (click)="openDialog(note)">Edit</button>
+          <button type="button" class="btn btn-light" (click)="onRemove(note.id)">Remove</button>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{note.name}}</h5>
+          <p class="card-text">{{note.data}}</p>
+          <button type="button" class="btn btn-primary" (click)="onOpen(note.id)">Open</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
 
 <router-outlet></router-outlet>

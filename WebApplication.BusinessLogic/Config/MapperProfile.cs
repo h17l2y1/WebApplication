@@ -1,7 +1,6 @@
 ﻿using WebApplication.Entities.Entities;
-using WebApplication.ViewModels.Category.Response;
-using WebApplication.ViewModels.Product.Request;
-using WebApplication.ViewModels.Product.Response;
+using WebApplication.ViewModels.Note.Request;
+using WebApplication.ViewModels.Note.Response;
 
 namespace WebApplication.BusinessLogic.Config
 {
@@ -9,10 +8,12 @@ namespace WebApplication.BusinessLogic.Config
 	{
 		public MapperProfile()
 		{
-			CreateMap<GetProductByCategoryResponseItem, Product>().ReverseMap();
-			CreateMap<GetAllCategoryItem, Category>().ReverseMap();
-			CreateMap<AddProductRequest, Product>().ReverseMap();
-			CreateMap<AddProductResponse, Product>().ReverseMap();
+			CreateMap<EditNoteRequest, Note>().ReverseMap();
+			CreateMap<EditNoteResponse, Note>().ReverseMap();
+			CreateMap<AddNoteRequest, Note>().ReverseMap();
+			CreateMap<AddNoteResponse, Note>().ReverseMap();
+			CreateMap<GetByIdNoteResponse, Note>().ReverseMap();
+			CreateMap<GetAllNotesResponseItem, Note>().ReverseMap();
 		}
 	}
 }

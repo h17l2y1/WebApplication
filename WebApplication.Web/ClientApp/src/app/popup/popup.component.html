@@ -1,0 +1,12 @@
+<div class="card-container">
+  <form [formGroup]="noteForm">
+    <input type="text" formControlName="name" class="form-control mb-3" placeholder="name" required>
+    <input type="text" formControlName="description" class="form-control mb-3" placeholder="description" required>
+    <textarea type="text" formControlName="data" class="form-control mb-3" placeholder="data" required></textarea>
+    
+    <div class="d-flex mb-3">
+      <button class="btn btn-light" (click)="onNoClick()">Close</button>
+      <button *ngIf="!isOpen" type="submit" class="btn btn-light" (click)="onOk()">OK</button>
+    </div>
+  </form>
+</div>

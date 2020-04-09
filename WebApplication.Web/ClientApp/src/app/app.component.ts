@@ -1,83 +1,71 @@
-import { Component, OnInit } from '@angular/core';
-import { DropDownService } from 'src/shared/service/dropdown.service';
-import { ProductService } from 'src/shared/service/product.service';
-import { DropDownView } from 'src/shared/model/dropdown.view';
-import { ProductsView, ProductsViewItem } from 'src/shared/model/product.view';
-import { AddProductRequest } from 'src/shared/model/add-product-request.view';
-import { FormGroup, FormControl } from '@angular/forms';
-import { GetProductByCategoryIdView } from 'src/shared/model/GetProductByCategoryId.view';
+import {Component, OnInit} from '@angular/core';
+import {NoteService} from 'src/shared/service/note.service';
+import {NotesViewItem} from '../shared/model/NotesView';
+import {MatDialog} from '@angular/material';
+import {PopupComponent} from './popup/popup.component';
+import {Note} from '../shared/model/Note';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.scss']
 })
 
 export class AppComponent implements OnInit {
-  title = 'ClientApp';
+  public notes: Array<NotesViewItem>;
 
-  public dropDownView: DropDownView;
-  public productsView: ProductsView;
-  public addProductView: AddProductRequest;
-  public dropDowmForm: FormGroup;
-  public addProductForm: FormGroup;
-  public productByCategoryIdView: GetProductByCategoryIdView;
-  public newItem: boolean;
-
-  constructor(private dropDownService: DropDownService, private productService: ProductService) {
+  constructor(private noteService: NoteService, public dialog: MatDialog) {
   }
 
   ngOnInit() {
-    this.initDropDown();
+    this.getAllNotes();
   }
 
-  private initDropDown(): void {
-    this.dropDownService.getAll().subscribe(response => {
-      this.dropDownView = response;
+  private getAllNotes(): void {
+    this.noteService.getAllNotes().subscribe(response => {
+      this.notes = response.notes;
+    });
+  }
 
-      this.dropDowmForm = new FormGroup({
-        categories: new FormControl(''),
+  public openDialog(note: NotesViewItem): void {
+    const sharedNote = new Note(note, false);
+    const dialogRef = this.dialog.open(PopupComponent, {
+      width: '250px',
+      data: sharedNote
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        if (result.id) {
+          this.noteService.update(result).subscribe(response => {
+            const oldNote = this.notes.find(x => x.id === response.id);
+            oldNote.name = response.name;
+            oldNote.description = response.description;
+            oldNote.data = response.data;
+          });
+          return;
+        }
+        this.noteService.add(result).subscribe(response => {
+          this.notes.push(response);
+        });
+      }
+    });
+  }
+
+  public onRemove(id: string) {
+    const index = this.notes.findIndex(x => x.id === id);
+    this.notes.splice(index, 1);
+    this.noteService.remove(id).subscribe();
+  }
+
+  public onOpen(id: string): void {
+    this.noteService.getById(id).subscribe(response => {
+      const sharedNote = new Note(response, true);
+      const dialogRef = this.dialog.open(PopupComponent, {
+        width: '250px',
+        data: sharedNote
       });
-
-      this.addProductForm = new FormGroup({
-        name: new FormControl(''),
-        categoryId: new FormControl(''),
-      });
-
-      this.getProducts();
     });
   }
-
-  private getProducts(): void {
-    this.productByCategoryIdView = new GetProductByCategoryIdView();
-    this.productByCategoryIdView.categoryId = this.dropDowmForm.controls.categories.value.id;
-    this.productService.getProducts(this.productByCategoryIdView).subscribe(response => {
-      this.productsView = response;
-    });
-  }
-
-  private addProduct(): void {
-    this.addProductView = new AddProductRequest();
-    this.addProductView.name = this.addProductForm.controls.name.value;
-    this.addProductView.categoryId = this.dropDowmForm.controls.categories.value.id;
-
-    this.productService.addProduct(this.addProductView).subscribe(response => {
-      this.openCloseForm();
-
-      const newProduct = new ProductsViewItem()
-      newProduct.name = response.name;
-      newProduct.id = response.id;
-      this.productsView.products.push(newProduct)
-    });
-  }
-
-  private openCloseForm(){
-    this.newItem = !this.newItem;
-  }
-
-  public getCategoryById(id: string): string {
-    const name = this.dropDownView.categories.find(x=>x.id == id).name;
-    return name;
-  }
-
 }
+

@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WebApplication.Entities\WebApplication.Entities.csproj" />
+    <ProjectReference Include="..\WebApplication.ViewModels\WebApplication.ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
