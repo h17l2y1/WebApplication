@@ -20,7 +20,6 @@ export class PopupComponent implements OnInit {
 
   ngOnInit() {
     this.isOpen = this.data.isOpen;
-    console.log(this.data.isOpen);
     this.noteForm = new FormGroup({
       id: new FormControl(this.data.note ? this.data.note.id : ''),
       name: new FormControl(this.data.note ? this.data.note.name : '', Validators.required),
@@ -39,6 +38,12 @@ export class PopupComponent implements OnInit {
   }
 
   onOk(): void {
+    if (this.noteForm.controls.name.errors ||
+        this.noteForm.controls.description.errors.required ||
+        this.noteForm.controls.data.errors.required) {
+      return;
+    }
+
     const note = new NotesViewItem();
     note.id = this.noteForm.controls.id.value;
     note.name = this.noteForm.controls.name.value;
